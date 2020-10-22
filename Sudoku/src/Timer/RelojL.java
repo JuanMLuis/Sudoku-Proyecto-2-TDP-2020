@@ -1,5 +1,7 @@
 package Timer;
 
+import Factory.FactoryAbstracta;
+import Factory.FactoryIMG;
 import GUI.CeldaGrafica;
 import GUI.CeldaGraficaAbstracta;
 
@@ -16,7 +18,7 @@ public class RelojL extends Thread {
 		Time = new int[4];
 		for(int i=0;i<4;i++) {
 			Tiempo[i]= new CeldaGrafica(i);	
-			Tiempo[i].setImage(0);
+			Tiempo[i].setImage(0,new FactoryIMG());
 			Time[i]=0;											//inicializo el temporizador en 00:00
 			}
 	}
@@ -36,6 +38,7 @@ public class RelojL extends Thread {
 	
 	
 	private void Aumentar(){								//actualiza el reloj, hasta un maximo de 99:60
+		FactoryAbstracta aux= new FactoryIMG();
 		Time[3]++;
 		if(Time[3]>=10) {									//aumenta en la ultima posicion, si esta supera al 10, igualar a 0 y aumentar la siguiente
 			Time[3]=0;
@@ -48,10 +51,10 @@ public class RelojL extends Thread {
 					Time[0]++;
 					if(Time[0]==10)
 						timeReset();
-				}Tiempo[0].setImage(Time[0]);				//seteo de las imagenes que cambiaron
-			}Tiempo[1].setImage(Time[1]);
-		}Tiempo[2].setImage(Time[2]);
-		Tiempo[3].setImage(Time[3]);
+				}Tiempo[0].setImage(Time[0],aux);				//seteo de las imagenes que cambiaron
+			}Tiempo[1].setImage(Time[1],aux);
+		}Tiempo[2].setImage(Time[2],aux);
+		Tiempo[3].setImage(Time[3],aux);
 	}
 	
 	
@@ -67,7 +70,7 @@ public class RelojL extends Thread {
 	public void restart() {									//reseatea por completo en cronometro
 		for(int i=0;i<4;i++) {								
 			Time[i]=0;	
-			Tiempo[i].setImage(0);
+			Tiempo[i].setImage(0,new FactoryIMG());
 			}
 			fin=false;
 		}

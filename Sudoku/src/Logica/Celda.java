@@ -1,5 +1,6 @@
 package Logica;
 
+import Factory.FactoryAbstracta;
 import GUI.CeldaGrafica;
 
 public class Celda {
@@ -17,10 +18,10 @@ public class Celda {
 		columna=b;
 	}
 	
-	public void setNumber(int a) {						//cambia el valor logico y grafico por el pasado por parametro
+	public void setNumber(int a,FactoryAbstracta F) {		//cambia el valor logico y grafico por el pasado por parametro en la fabrica
 		if (!lock) {
 		numero=a;
-		grafico.setImage(a);
+		grafico.setImage(a,F);
 		}
 		
 	}

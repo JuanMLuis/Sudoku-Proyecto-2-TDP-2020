@@ -47,10 +47,5 @@ public class FactoryIMG extends FactoryAbstracta {
 		return aux;
 	}
 	
-	public ImageIcon getPuntos() {														//retorna un imageIcon (:) 
-		return new ImageIcon(this.getClass().getResource("/Factory/puntosV2.png"));
-	}
-	public ImageIcon getVictoria() {
-		return new ImageIcon(this.getClass().getResource("/Factory/Victory.png"));				//retorna el cartel de victoria
-	}
+	
 }

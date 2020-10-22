@@ -3,6 +3,9 @@ package Logica;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+
+import Factory.FactoryIMG;
+import Factory.FactoryNumerosS;
 import Singletone.singleton;
 
 public class Sudoku {
@@ -29,9 +32,11 @@ public class Sudoku {
 						try {
 						aux1=Integer.parseInt(arreglo[i]);					//convierto al valor del archivo a numero
 						if(aux1>=0 && aux1<=9) {
-							if(aux1!=0) 
-							Matriz[i][fila].setNumber(aux1);				//seteo el valor que corresponde
-						}else fallo=true;										//si el valor es negativo o mayor que nueve manda error
+							if(aux1!=0) {
+							Matriz[i][fila].setNumber(aux1,new FactoryNumerosS());				//seteo el valor que corresponde
+							Matriz[i][fila].setLock(true);
+							}
+							}else fallo=true;										//si el valor es negativo o mayor que nueve manda error
 					}catch(NumberFormatException r) {						//este error es cuando se lee algo que no sea un numero
 						fallo=true;
 					}
@@ -54,35 +59,28 @@ public class Sudoku {
 	}
 	
 	private void ReduccionDeSudoku() {
-		int cantaQuitar = (int) Math.floor(Math.random()*15+30);//[30-45]
+		int cuantaQuitar = (int) Math.floor(Math.random()*15+30);//[30-45]
 		int contador=0;
 		int a;
 		int b;
-		int[] aux= new int[cantaQuitar];
-		while(contador<cantaQuitar) {
+		while(contador<cuantaQuitar) {
 			a= (int) Math.floor(Math.random()*9);
 			b=(int) Math.floor(Math.random()*9);//[0-8]
 			if(Matriz[a][b].getNumber()<10) {
-			aux[contador]=Matriz[a][b].getNumber();
-			Matriz[a][b].setNumber(10);//valor vacio por decicion propia
-			if(TieneUnaSolucion(aux)) {	
+			Matriz[a][b].setLock(false);
+			Matriz[a][b].setNumber(10,new FactoryIMG());//valor vacio por decicion propia
+			
 				contador++;
-			}else {
-				Matriz[a][b].setNumber(aux[contador]);
-			}
+			
 		}
 			}
 		
 	}
 
-	private boolean TieneUnaSolucion(int[] a) {
-		
-		return true;
-	}
 
 	public void cambiarValor(int i,int o,int c) {				//cambia el valor de la matriz en el punto(i,o) por c, 		no tomo encuenta valores erroneos 
 		
-		Matriz[i][o].setNumber(c);
+		Matriz[i][o].setNumber(c,new FactoryIMG());
 		
 	}
 	

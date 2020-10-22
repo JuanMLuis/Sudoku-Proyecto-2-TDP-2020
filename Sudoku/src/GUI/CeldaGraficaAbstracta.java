@@ -3,6 +3,7 @@ package GUI;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import Factory.FactoryAbstracta;
 import Factory.FactoryIMG;
 
 public class CeldaGraficaAbstracta {
@@ -13,10 +14,9 @@ public class CeldaGraficaAbstracta {
 		return grafico;
 	}
 	
-	public void setImage(int a) {												//setea la imagen del grafico con el numero pasado por parametro mediante la factory
-		FactoryIMG aux= new FactoryIMG();
-		ImageIcon aux2=aux.getNumber(a);
-		grafico.setIcon(ArregloImagen.Acomodar(aux2,grafico));
+	public void setImage(int a, FactoryAbstracta f) {						//setea la imagen del grafico con el numero pasado por parametro mediante la factory
+		ImageIcon aux=f.getNumber(a);
+		grafico.setIcon(ArregloImagen.Acomodar(aux,grafico));
 		
 	}
 	

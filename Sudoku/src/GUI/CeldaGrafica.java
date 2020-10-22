@@ -1,11 +1,12 @@
 package GUI;
+import Factory.FactoryIMG;
 import Singletone.singleton;
 
 public class CeldaGrafica extends CeldaGraficaAbstracta {
 	
 		public CeldaGrafica(int a,int b) {						//constructor para matriz
 			grafico=singleton.getGui().ubicacion(a, b);			//inicia matriz
-			setImage(10);										//le pone imagen 10 (espacio vacio)
+			setImage(10,new FactoryIMG());										//le pone imagen 10 (espacio vacio)
 			
 		}
 		
